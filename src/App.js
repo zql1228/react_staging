@@ -22,13 +22,14 @@ export default class App extends Component {
   //用于更新todo
   updateTodo=(id,done)=>{
     const {todos}=this.state
-    todos.map((item,i)=>{
+    const newTodos=todos.map((item)=>{
       if(id===item.id){
         return {...item,done}
       }else{
         return item
       }     
     })
+    this.setState({todos:newTodos})
   }
   //删除某一个todo
   deleteTodo=(id)=>{
