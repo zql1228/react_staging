@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Route,Switch,Redirect} from 'react-router-dom'
+import {Route,Switch} from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Header from './components/Header'
@@ -24,16 +24,16 @@ export default class App extends Component {
           <NavLink activeClassName='atguigu' className="list-group-item" to="/home" >Home</NavLink> */}
           
           <MyNavLink to="/about"  >About</MyNavLink>
-          <MyNavLink to="/home"  >Home</MyNavLink>
+          <MyNavLink to="/home/a/b"  >Home</MyNavLink>
         </div>
       </div>
       <div className="col-xs-6">
         <div className="panel">
           <div className="panel-body">
+            {/* 注册路由 exact 精准匹配  */}
             <Switch>
             <Route  path="/about" component={About} /> 
-            <Route  path="/home" component={Home} />
-            <Redirect to="/about"/>
+            <Route exact path="/home" component={Home} />
             </Switch>
           </div>
         </div>
