@@ -43,3 +43,7 @@ match:
             <Route  path="/home" component={Home} />
             <Redirect to="/about"/>
         </Switch>
+## 十一.向路由组件传递参数
+路由链接（携带参数）：  <Link to={`/home/message/detail/${item.id}/${item.title}`} >{item.title}</Link>
+注册路由： <Route  path="/home/message/detail/:id/:title" component={Detail}></Route>
+接受参数：  const {id,title}=this.props.match.params
