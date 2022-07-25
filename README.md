@@ -44,6 +44,27 @@ match:
             <Redirect to="/about"/>
         </Switch>
 ## 十一.向路由组件传递参数
-路由链接（携带参数）：  <Link to={`/home/message/detail/${item.id}/${item.title}`} >{item.title}</Link>
-注册路由： <Route  path="/home/message/detail/:id/:title" component={Detail}></Route>
-接受参数：  const {id,title}=this.props.match.params
+    1.params参数
+        路由链接（携带参数）：  <Link to={`/home/message/detail/${item.id}/${item.title}`} >{item.title}</Link>
+        注册路由： <Route  path="/home/message/detail/:id/:title" component={Detail}></Route>
+        接受参数：  const {id,title}=this.props.match.params
+    2.search参数
+        路由链接（携带参数）：<Link to={`/home/message/detail/?id=${item.id}&title=${item.title}`} >{item.title}</Link>
+        注册路由：  <Route  path="/home/message/detail/" component={Detail}></Route>
+        接受参数：   const {id,title}=qs.parse(this.props.location.search.slice(1)) 
+    3.state参数
+        路由链接（携带参数）： <Link to={{pathname:'/home/message/detail',state:{id:item.id,title:item.title}}} >{item.title}</Link>
+        注册路由：  <Route  path="/home/message/detail/" component={Detail}></Route>
+        接受参数：    const {id,title}=this.props.location.state || {}
+        备注：刷新也不丢失数据
+## 十二 
+## 十三 BrowserRouter与HashRouter的区别
+1.底层原理不一样
+    BrowserRouter使用的是H5的history API ，不兼容ie9以下版本
+    HashRouter使用的是url的hash值
+2.path的表现形式不一样
+    Browerrouter路径中没有#号
+3.刷新后对路由state参数的影响
+    （1）BrowserRouter没有任何影响，因为state参数保存在history中
+    （2）HashRouter刷新后会导致路由state参数的丢失
+4.备注：HashRouter 可以用于解决一些路经错误相关的问题

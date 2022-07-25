@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import qs from 'qs'
+import qs from 'qs'
 export default class Detail extends Component {
     state={data:[{
         id:'01',content:'我爱中国'
@@ -12,12 +12,9 @@ export default class Detail extends Component {
       }
     ]}
   render() {
-     //接受params参数
     // const {id,title}=this.props.match.params
     //接受search参数
-    //  const {id,title}=qs.parse(this.props.location.search.slice(1)) 
-    //接受state参数
-    const {id,title}=this.props.location.state || {}
+     const {id,title}=qs.parse(this.props.location.search.slice(1)) 
     const findContent=this.state.data.find((detailObj)=>{return detailObj.id===id})
     return (
       <ul>
